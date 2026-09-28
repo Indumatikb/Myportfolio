@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   GitCommit, 
   GitPullRequest, 
@@ -6,17 +6,44 @@ import {
   Flame, 
   ExternalLink,
   Award,
-  Milestone
+  Milestone,
+  Sparkles
 } from 'lucide-react';
-import { Github } from './Icons';
+import EventLedger from './EventLedger';
 import './Journey.css';
+
+const StatCounter = ({ target, suffix = '+' }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let current = 0;
+    const duration = 1600;
+    const intervalTime = 35;
+    const totalSteps = duration / intervalTime;
+    const stepIncrement = target / totalSteps;
+
+    const timer = setInterval(() => {
+      current += stepIncrement;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, intervalTime);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return <span>{count}{suffix}</span>;
+};
 
 const Journey = () => {
   const stats = [
-    { label: 'Repositories & Projects', value: '15+', icon: <Code size={20} /> },
-    { label: 'Consistent Coding Days', value: '180+', icon: <Flame size={20} /> },
-    { label: 'Code Commits Pushed', value: '450+', icon: <GitCommit size={20} /> },
-    { label: 'Core Algorithms Solved', value: '120+', icon: <Award size={20} /> }
+    { label: 'Repositories & Projects', target: 15, suffix: '+', icon: <Code size={20} /> },
+    { label: 'Consistent Coding Days', target: 180, suffix: '+', icon: <Flame size={20} /> },
+    { label: 'Code Commits Pushed', target: 450, suffix: '+', icon: <GitCommit size={20} /> },
+    { label: 'Core Algorithms Solved', target: 120, suffix: '+', icon: <Award size={20} /> }
   ];
 
   const milestones = [
@@ -37,31 +64,21 @@ const Journey = () => {
     },
     {
       year: '2026',
-      title: 'Advanced Projects & Placement Readiness',
-      description: 'Building production-grade applications like EventWaala, solving complex DSA problems daily, and preparing for software engineering roles.'
+      title: 'EventLedger & Placement Readiness',
+      description: 'Engineered EventLedger booking engine, architecting transaction-safe backend logic, solving complex DSA problems, and preparing for software engineering roles.'
     }
   ];
-
-  // Simulating GitHub activity heat map rows
-  const heatMapDays = Array.from({ length: 52 * 7 }, (_, i) => {
-    // Generate realistic distribution of commit intensities (0 to 4)
-    const random = (i * 17 + (i % 7) * 23) % 100;
-    if (random > 80) return 3;
-    if (random > 60) return 2;
-    if (random > 35) return 1;
-    return 0;
-  });
 
   return (
     <section id="journey" className="journey-section">
       <div className="container">
         <div className="section-header">
-          <span className="section-pill">GitHub & Progression</span>
+          <span className="section-pill">Flagship Engineering & Milestones</span>
           <h2 className="section-title">
-            Coding <span className="gradient-text">Journey & Milestones</span>
+            EventLedger & <span className="gradient-text">Coding Journey</span>
           </h2>
           <p className="section-subtitle">
-            A visual reflection of consistency, code commits, and the continuous evolution of my engineering skills.
+            Hands-on software architecture in action: exploring the EventLedger audit engine alongside key milestones in my engineering evolution.
           </p>
         </div>
 
@@ -70,56 +87,16 @@ const Journey = () => {
           {stats.map((stat, i) => (
             <div key={i} className="stat-card glass-panel">
               <div className="stat-icon-wrap">{stat.icon}</div>
-              <div className="stat-value">{stat.value}</div>
+              <div className="stat-value">
+                <StatCounter target={stat.target} suffix={stat.suffix} />
+              </div>
               <div className="stat-label">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* GitHub Contribution Heatmap Card */}
-        <div className="github-card glass-panel">
-          <div className="github-card-header">
-            <div className="gh-header-left">
-              <Github size={22} className="gh-icon" />
-              <div>
-                <h3 className="gh-title">GitHub Activity & Contributions</h3>
-                <span className="gh-sub">Public contributions and continuous development commits</span>
-              </div>
-            </div>
-            <a 
-              href="https://github.com" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="btn btn-outline gh-profile-btn"
-              id="view-github-profile-btn"
-            >
-              View GitHub Profile <ExternalLink size={14} style={{ marginLeft: '6px' }} />
-            </a>
-          </div>
-
-          {/* Activity Heatmap Grid representation */}
-          <div className="heatmap-wrapper">
-            <div className="heatmap-scroll">
-              <div className="heatmap-grid">
-                {heatMapDays.slice(0, 364).map((level, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`heatmap-cell level-${level}`}
-                    title={`Activity day ${idx + 1}`}
-                  ></div>
-                ))}
-              </div>
-            </div>
-            <div className="heatmap-legend">
-              <span className="legend-text">Less</span>
-              <div className="heatmap-cell level-0"></div>
-              <div className="heatmap-cell level-1"></div>
-              <div className="heatmap-cell level-2"></div>
-              <div className="heatmap-cell level-3"></div>
-              <span className="legend-text">More</span>
-            </div>
-          </div>
-        </div>
+        {/* BREATHTAKING EVENTLEDGER SPOTLIGHT (Replaced green boxes) */}
+        <EventLedger />
 
         {/* Timeline of Milestones */}
         <div className="timeline-container">

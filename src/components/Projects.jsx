@@ -9,18 +9,18 @@ const Projects = () => {
   const projects = [
     {
       id: 'eventwaala',
-      title: 'EventWaala - Event Management Platform',
+      title: 'EventLedger - Event Booking & Financial Audit Platform',
       category: 'fullstack',
       featured: true,
-      tagline: 'Modern event booking and vendor coordination portal',
-      description: 'A full-stack web application designed to simplify booking event venues, decorators, and catering services. Built with a modular React frontend and robust Django REST backend architecture.',
+      tagline: 'High-concurrency event booking & audit-proof financial ledger engine',
+      description: 'A full-stack web application designed to simplify booking event venues, decorators, and catering services with immutable audit records. Built with a modular React frontend and robust Django REST backend architecture.',
       highlights: [
-        'End-to-end event and vendor booking workflow',
+        'End-to-end event and vendor booking workflow with ACID consistency',
         'RESTful API integration with token-based authentication',
-        'Real-time status tracking & responsive dashboard',
-        'Relational database models for scalable event reservations'
+        'Real-time status tracking & financial audit-ready dashboard',
+        'Relational database models preventing concurrent double-bookings'
       ],
-      techStack: ['React', 'JavaScript', 'Django', 'Python', 'REST APIs', 'CSS3'],
+      techStack: ['Django REST', 'React 19', 'Python', 'PostgreSQL', 'ACID Transactions', 'Vite'],
       demoLink: '#',
       githubLink: 'https://github.com'
     },
