@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Code, Compass, Target, GraduationCap, Laptop, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Code, Compass, Target, Laptop, Sparkles, CheckCircle2 } from 'lucide-react';
 import './About.css';
 
 const About = () => {

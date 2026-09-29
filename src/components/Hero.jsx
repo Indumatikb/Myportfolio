@@ -1,56 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, FileText, Terminal, Sparkles, Code2, MapPin, Play, CornerDownLeft } from 'lucide-react';
+import { ArrowRight, FileText, Sparkles, Code2, MapPin, Copy, Check, GraduationCap } from 'lucide-react';
 import './Hero.css';
 
+// Rotating animated roles for title
+const ROLES = [
+  "Computer Science Engineering Student",
+  "Aspiring Software Developer",
+  "Full-Stack Web Enthusiast",
+  "Passionate Problem Solver"
+];
+
 const Hero = () => {
-  // Rotating animated roles
-  const roles = [
-    "Computer Science Student",
-    "Future Software Developer",
-    "Full-Stack Web Enthusiast",
-    "Problem Solver & Builder"
-  ];
-  
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
+  const [isCopied, setIsCopied] = useState(false);
 
-  // Terminal interactive state
-  const [terminalHistory, setTerminalHistory] = useState([
-    { type: 'cmd', text: 'cat profile.json' },
-    { 
-      type: 'output', 
-      text: JSON.stringify({
-        name: "Indumati Kallanagoud Biradar",
-        role: "CSE Student",
-        goal: "Future Software Developer",
-        motto: "Learn. Build. Break. Fix. Repeat.",
-        skills: ["JavaScript", "Java", "Python", "React", "CS Core"]
-      }, null, 2)
-    }
-  ]);
-  const [inputVal, setInputVal] = useState('');
-
-  // Typing effect loop
+  // Typewriter effect loop
   useEffect(() => {
     const handleTyping = () => {
-      const fullText = roles[currentRoleIndex];
+      const fullText = ROLES[currentRoleIndex];
 
       if (!isDeleting) {
         setDisplayText(fullText.substring(0, displayText.length + 1));
-        setTypingSpeed(90);
+        setTypingSpeed(85);
 
         if (displayText === fullText) {
           setTimeout(() => setIsDeleting(true), 1800);
         }
       } else {
         setDisplayText(fullText.substring(0, displayText.length - 1));
-        setTypingSpeed(45);
+        setTypingSpeed(40);
 
         if (displayText === '') {
           setIsDeleting(false);
-          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+          setCurrentRoleIndex((prev) => (prev + 1) % ROLES.length);
         }
       }
     };
@@ -59,57 +44,25 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, currentRoleIndex, typingSpeed]);
 
-  const handleCommand = (cmd) => {
-    const trimmed = cmd.trim().toLowerCase();
-    let response = '';
-
-    if (trimmed === 'clear') {
-      setTerminalHistory([]);
-      setInputVal('');
-      return;
-    } else if (trimmed === 'help') {
-      response = 'Available commands: profile, skills, projects, contact, clear, motto';
-    } else if (trimmed === 'profile') {
-      response = 'Indumati Kallanagoud Biradar | B.E. in Computer Science & Engineering | Aspiring Software Developer';
-    } else if (trimmed === 'skills') {
-      response = 'Languages: JavaScript, Java, Python, C/C++\nWeb: React, HTML5, CSS3, REST APIs\nCore: Data Structures, OOP, DBMS';
-    } else if (trimmed === 'projects') {
-      response = '1. EventLedger (Django REST + React)\n2. Interactive Portfolio (Vite + React)\n3. Algorithm Visualizer (JS + Canvas)';
-    } else if (trimmed === 'contact') {
-      response = 'Email: indumatibiradar.dev@gmail.com | Location: Karnataka, India';
-    } else if (trimmed === 'motto') {
-      response = '"Learn. Build. Break. Fix. Repeat."';
-    } else if (trimmed === '') {
-      return;
-    } else {
-      response = `command not found: ${trimmed}. Type 'help' for commands.`;
-    }
-
-    setTerminalHistory(prev => [
-      ...prev,
-      { type: 'cmd', text: cmd },
-      { type: 'output', text: response }
-    ]);
-    setInputVal('');
-  };
-
-  const onKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleCommand(inputVal);
-    }
+  const handleCopyProfile = () => {
+    const profileSummary = `Indumati Kallanagoud Biradar | CSE Student & Software Developer | indumatibiradar.dev@gmail.com`;
+    navigator.clipboard.writeText(profileSummary);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2200);
   };
 
   return (
     <section id="home" className="hero-section">
       <div className="container hero-container">
+        {/* Left Column: Hero Content */}
         <div className="hero-content">
-          <div className="hero-badge animate-fade-in">
+          <div className="hero-badge">
             <Sparkles size={14} className="badge-icon" />
             <span>Open to Internships & Opportunities</span>
           </div>
-          
+
           <p className="hero-subtitle">HELLO, I'M INDU 👋</p>
-          
+
           <h1 className="hero-title">
             <span className="name-highlight">Indumati Kallanagoud Biradar</span>
             <span className="role-subtext-container">
@@ -122,13 +75,13 @@ const Hero = () => {
             <Code2 size={16} className="tagline-icon" />
             <span>"Learn. Build. Break. Fix. Repeat."</span>
           </div>
-          
+
           <p className="hero-description">
-            I’m a Computer Science Engineering student who enjoys learning by building. 
-            Currently strengthening my skills in JavaScript, Java, Python, web development, 
-            and core computer science concepts. Aiming to grow as a <strong>Future Software Developer</strong>.
+            I’m a Computer Science Engineering student who thrives on learning by building. 
+            Currently sharpening my skills across <strong>JavaScript, React, Java, Python</strong>, 
+            and foundational computer science principles. Aiming to build impactful, dependable software.
           </p>
-          
+
           <div className="hero-actions">
             <a href="#projects" className="btn btn-primary" id="hero-view-work">
               Explore Projects <ArrowRight size={18} style={{ marginLeft: '8px' }} />
@@ -149,71 +102,164 @@ const Hero = () => {
             <span className="meta-item">
               <MapPin size={14} /> Karnataka, India
             </span>
+            <span className="meta-divider">•</span>
+            <span className="meta-item">
+              <GraduationCap size={14} /> CSE Class of 2027
+            </span>
           </div>
         </div>
 
-        {/* Interactive Developer Terminal Mockup */}
+        {/* Right Column: Sleek Modern Developer Code Showcase */}
         <div className="hero-visual">
-          <div className="terminal-window glass-panel">
-            <div className="terminal-header">
-              <div className="terminal-buttons">
+          <div className="code-window glass-panel">
+            {/* Window Top Bar */}
+            <div className="code-header">
+              <div className="window-dots">
                 <span className="dot red"></span>
                 <span className="dot yellow"></span>
                 <span className="dot green"></span>
               </div>
-              <div className="terminal-title">
-                <Terminal size={14} /> indumati@portfolio:~ (Interactive)
+              <div className="editor-tab">
+                <Code2 size={13} className="tab-icon" />
+                <span className="tab-filename">developer.js</span>
+              </div>
+              <button 
+                onClick={handleCopyProfile} 
+                className="copy-code-btn"
+                title="Copy developer details"
+                aria-label="Copy developer summary"
+              >
+                {isCopied ? (
+                  <>
+                    <Check size={13} className="text-emerald" />
+                    <span>Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={13} />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Code Editor Body */}
+            <div className="code-editor-body">
+              <div className="code-lines">
+                <div className="code-line-row">
+                  <span className="line-num">1</span>
+                  <span className="code-token token-keyword">const</span>
+                  <span className="code-token token-var"> developer</span>
+                  <span className="code-token token-op"> =</span>
+                  <span className="code-token token-bracket"> &#123;</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">2</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">name</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-str"> "Indumati Kallanagoud Biradar"</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">3</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">education</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-str"> "B.E. in Computer Science"</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">4</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">expectedGraduation</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-num"> 2027</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">5</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">location</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-str"> "Karnataka, India"</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">6</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">languages</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-bracket"> [</span>
+                  <span className="code-token token-str">"JavaScript"</span>
+                  <span className="code-token token-comma">, </span>
+                  <span className="code-token token-str">"Java"</span>
+                  <span className="code-token token-comma">, </span>
+                  <span className="code-token token-str">"Python"</span>
+                  <span className="code-token token-bracket">]</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">7</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">webFrameworks</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-bracket"> [</span>
+                  <span className="code-token token-str">"React"</span>
+                  <span className="code-token token-comma">, </span>
+                  <span className="code-token token-str">"REST APIs"</span>
+                  <span className="code-token token-comma">, </span>
+                  <span className="code-token token-str">"Vite"</span>
+                  <span className="code-token token-bracket">]</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">8</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">coreCS</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-bracket"> [</span>
+                  <span className="code-token token-str">"Data Structures"</span>
+                  <span className="code-token token-comma">, </span>
+                  <span className="code-token token-str">"OOP"</span>
+                  <span className="code-token token-comma">, </span>
+                  <span className="code-token token-str">"DBMS"</span>
+                  <span className="code-token token-bracket">]</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">9</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">openForOpportunities</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-bool"> true</span>
+                  <span className="code-token token-comma">,</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">10</span>
+                  <span className="code-indent">  </span>
+                  <span className="code-token token-key">motto</span>
+                  <span className="code-token token-op">:</span>
+                  <span className="code-token token-str"> "Learn. Build. Break. Fix. Repeat."</span>
+                </div>
+                <div className="code-line-row">
+                  <span className="line-num">11</span>
+                  <span className="code-token token-bracket">&#125;</span>
+                  <span className="code-token token-op">;</span>
+                </div>
               </div>
             </div>
 
-            {/* Quick Action Chips for Terminal */}
-            <div className="terminal-quick-cmds">
-              <span className="quick-label">Try:</span>
-              {['skills', 'projects', 'contact', 'motto', 'clear'].map(cmd => (
-                <button 
-                  key={cmd}
-                  onClick={() => handleCommand(cmd)}
-                  className="quick-cmd-btn"
-                  title={`Run '${cmd}' command`}
-                >
-                  {cmd}
-                </button>
-              ))}
-            </div>
-
-            <div className="terminal-body" id="hero-terminal-scroll">
-              {terminalHistory.map((item, index) => (
-                <div key={index} className="terminal-entry">
-                  {item.type === 'cmd' ? (
-                    <div className="code-line">
-                      <span className="cmd-prompt">indumati@portfolio:~$</span>
-                      <span className="cmd-text">{item.text}</span>
-                    </div>
-                  ) : (
-                    <pre className="code-content">{item.text}</pre>
-                  )}
-                </div>
-              ))}
-
-              <div className="code-line terminal-input-line">
-                <span className="cmd-prompt">indumati@portfolio:~$</span>
-                <input
-                  type="text"
-                  value={inputVal}
-                  onChange={(e) => setInputVal(e.target.value)}
-                  onKeyDown={onKeyDown}
-                  placeholder="type 'help' or click above..."
-                  className="terminal-inline-input"
-                  aria-label="Terminal command input"
-                />
-                <button 
-                  onClick={() => handleCommand(inputVal)}
-                  className="terminal-send-btn"
-                  title="Run command"
-                  aria-label="Execute command"
-                >
-                  <CornerDownLeft size={12} />
-                </button>
+            {/* Window Status Bar */}
+            <div className="code-status-bar">
+              <div className="status-left">
+                <span className="status-badge-dot"></span>
+                <span>UTF-8</span>
+                <span className="status-sep">•</span>
+                <span>JavaScript</span>
+              </div>
+              <div className="status-right">
+                <span className="text-emerald">● Ready to Build</span>
               </div>
             </div>
           </div>

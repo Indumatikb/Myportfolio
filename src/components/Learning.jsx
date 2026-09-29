@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Rocket, Flame, Clock, Award, Target, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Flame, CheckCircle2 } from 'lucide-react';
 import './Learning.css';
 
 const Learning = () => {

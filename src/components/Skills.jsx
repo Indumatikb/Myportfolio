@@ -1,15 +1,4 @@
 import React, { useState } from 'react';
-import { 
-  Code2, 
-  Globe, 
-  Cpu, 
-  Terminal, 
-  Layers, 
-  Database, 
-  GitBranch, 
-  CheckCircle,
-  FileCode2
-} from 'lucide-react';
 import './Skills.css';
 
 const Skills = () => {

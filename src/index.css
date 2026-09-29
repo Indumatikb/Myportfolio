@@ -70,44 +70,54 @@ body {
   z-index: 0;
 }
 
-/* Floating Ambient Aurora Orbs */
-.aurora-orb {
+/* Floating Ambient Orbs - Pure CSS, zero CPU overhead */
+.ambient-background {
   position: fixed;
-  border-radius: 50%;
-  filter: blur(100px);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.28;
-  animation: floatOrb 18s ease-in-out infinite alternate;
 }
 
-.orb-1 {
-  width: 500px;
-  height: 500px;
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  pointer-events: none;
+  opacity: 0.22;
+  animation: floatOrb 22s ease-in-out infinite alternate;
+}
+
+.orb-cyan {
+  width: 520px;
+  height: 520px;
   background: radial-gradient(circle, #38bdf8 0%, #6366f1 70%);
-  top: -100px;
-  left: -150px;
+  top: -120px;
+  left: -120px;
 }
 
-.orb-2 {
-  width: 450px;
-  height: 450px;
+.orb-purple {
+  width: 480px;
+  height: 480px;
   background: radial-gradient(circle, #a855f7 0%, #ec4899 70%);
-  bottom: 10%;
+  bottom: 5%;
   right: -100px;
-  animation-duration: 22s;
-  animation-delay: -5s;
+  animation-duration: 26s;
+  animation-delay: -6s;
 }
 
-.orb-3 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, #06b6d4 0%, #10b981 70%);
-  top: 45%;
-  left: 30%;
-  animation-duration: 25s;
-  animation-delay: -10s;
-  opacity: 0.15;
+.orb-indigo {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #6366f1 0%, #06b6d4 70%);
+  top: 40%;
+  left: 35%;
+  animation-duration: 28s;
+  animation-delay: -12s;
+  opacity: 0.14;
 }
 
 @keyframes floatOrb {
@@ -115,24 +125,11 @@ body {
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(60px, 40px) scale(1.08);
+    transform: translate(50px, 35px) scale(1.06);
   }
   100% {
-    transform: translate(-40px, 80px) scale(0.95);
+    transform: translate(-35px, 60px) scale(0.96);
   }
-}
-
-/* Mouse Follower Glow */
-.mouse-glow {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(168, 85, 247, 0.03) 40%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  transition: width 0.3s ease, height 0.3s ease;
 }
 
 /* Typography */

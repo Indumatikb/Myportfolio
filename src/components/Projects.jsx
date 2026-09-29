@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Layers, ArrowUpRight, Code, Calendar } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Github } from './Icons';
 import './Projects.css';
 
@@ -9,18 +9,18 @@ const Projects = () => {
   const projects = [
     {
       id: 'eventwaala',
-      title: 'EventLedger - Event Booking & Financial Audit Platform',
+      title: 'EventWaala - Event Booking & Management Platform',
       category: 'fullstack',
       featured: true,
-      tagline: 'High-concurrency event booking & audit-proof financial ledger engine',
-      description: 'A full-stack web application designed to simplify booking event venues, decorators, and catering services with immutable audit records. Built with a modular React frontend and robust Django REST backend architecture.',
+      tagline: 'Full-stack platform for booking event venues, catering, and decor',
+      description: 'A comprehensive full-stack web application designed to streamline event planning and vendor coordination. Features a modular React interface paired with a Django REST backend for dependable booking management.',
       highlights: [
-        'End-to-end event and vendor booking workflow with ACID consistency',
-        'RESTful API integration with token-based authentication',
-        'Real-time status tracking & financial audit-ready dashboard',
-        'Relational database models preventing concurrent double-bookings'
+        'End-to-end event venue, catering, and decor reservation workflow',
+        'RESTful API integration with secure token authentication',
+        'Real-time booking status tracking and responsive vendor dashboard',
+        'Relational database architecture preventing scheduling conflicts'
       ],
-      techStack: ['Django REST', 'React 19', 'Python', 'PostgreSQL', 'ACID Transactions', 'Vite'],
+      techStack: ['Django REST', 'React', 'Python', 'PostgreSQL', 'CSS3', 'Vite'],
       demoLink: '#',
       githubLink: 'https://github.com'
     },
@@ -35,9 +35,9 @@ const Projects = () => {
         'Modular, component-based React architecture',
         'Custom dark aesthetic with glassmorphic cards and gradients',
         'Fully responsive across smartphones, tablets, and desktops',
-        'Semantic HTML and SEO structured metadata'
+        'Semantic HTML, accessible components, and SEO structured metadata'
       ],
-      techStack: ['React', 'Vite', 'JavaScript', 'Vanilla CSS', 'Lucide Icons'],
+      techStack: ['React', 'Vite', 'JavaScript (ES6+)', 'Vanilla CSS', 'Lucide Icons'],
       demoLink: '#home',
       githubLink: 'https://github.com'
     },
@@ -49,7 +49,7 @@ const Projects = () => {
       tagline: 'Step-by-step visualizer for core computer science algorithms',
       description: 'An interactive web simulation tool that renders sorting algorithms (Bubble Sort, Merge Sort, Quick Sort) and search techniques in real time with adjustable animation speeds to analyze Big-O complexity.',
       highlights: [
-        'Live step-by-step state visualization',
+        'Live step-by-step state and comparison visualization',
         'Comparative time and space complexity metrics',
         'Interactive array size and velocity controls',
         'Clean Object-Oriented JavaScript architecture'
@@ -60,7 +60,7 @@ const Projects = () => {
     },
     {
       id: 'student-portal',
-      title: 'Student Academic Portal & Tracker',
+      title: 'Student Academic Portal & Performance Tracker',
       category: 'fullstack',
       featured: false,
       tagline: 'Centralized coursework and performance management system',
