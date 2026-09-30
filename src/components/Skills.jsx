@@ -5,37 +5,82 @@ const Skills = () => {
   const [activeTab, setActiveTab] = useState('all');
 
   const categories = [
-    { id: 'all', label: 'All Tech' },
-    { id: 'languages', label: 'Languages' },
-    { id: 'web', label: 'Web Dev' },
-    { id: 'core', label: 'Core CS' },
+    { id: 'all', label: 'All Technologies' },
+    { id: 'languages', label: 'Programming Languages' },
+    { id: 'web', label: 'Web Development' },
     { id: 'tools', label: 'Tools & Workflow' }
   ];
 
   const skillsData = [
-    // Languages
-    { name: 'JavaScript', category: 'languages', level: 'Intermediate', icon: '⚡', desc: 'Modern ES6+, Async/Await, DOM manipulation' },
-    { name: 'Java', category: 'languages', level: 'Intermediate', icon: '☕', desc: 'OOP concepts, Collections, Robust fundamentals' },
-    { name: 'Python', category: 'languages', level: 'Intermediate', icon: '🐍', desc: 'Scripting, Data structures, Logic building' },
-    { name: 'C / C++', category: 'languages', level: 'Foundational', icon: '⚙️', desc: 'Memory concepts, Pointers, Algorithm basics' },
+    // Programming Languages
+    { 
+      id: 'python',
+      name: 'Python', 
+      category: 'languages', 
+      level: 'Intermediate', 
+      icon: '🐍', 
+      desc: 'Core syntax, scripting, data structures, and problem-solving logic.' 
+    },
+    { 
+      id: 'c',
+      name: 'C', 
+      category: 'languages', 
+      level: 'Foundational', 
+      icon: '⚙️', 
+      desc: 'Memory concepts, pointers, structured programming, and core algorithmic fundamentals.' 
+    },
+    { 
+      id: 'java',
+      name: 'Java', 
+      category: 'languages', 
+      level: 'Intermediate', 
+      icon: '☕', 
+      desc: 'Object-oriented programming, classes, inheritance, polymorphism, and collections.' 
+    },
+    { 
+      id: 'js',
+      name: 'JavaScript (JS)', 
+      category: 'languages', 
+      level: 'Intermediate', 
+      icon: '⚡', 
+      desc: 'Modern ES6+ syntax, DOM manipulation, event handling, and dynamic web functionality.' 
+    },
 
-    // Web Development
-    { name: 'React.js', category: 'web', level: 'Intermediate', icon: '⚛️', desc: 'Functional Components, Hooks, State management' },
-    { name: 'HTML5 & CSS3', category: 'web', level: 'Advanced', icon: '🎨', desc: 'Responsive Design, Flexbox, Grid, Glassmorphism' },
-    { name: 'Vite & Modern Tooling', category: 'web', level: 'Intermediate', icon: '🚀', desc: 'Bundling, Fast HMR, Project scaffolding' },
-    { name: 'REST APIs', category: 'web', level: 'Intermediate', icon: '🔌', desc: 'HTTP methods, JSON serialization, Client-side fetch' },
-
-    // Core CS
-    { name: 'Data Structures', category: 'core', level: 'Intermediate', icon: '🌳', desc: 'Arrays, Linked Lists, Stacks, Queues, Trees' },
-    { name: 'Algorithms', category: 'core', level: 'Intermediate', icon: '🧮', desc: 'Searching, Sorting, Recursion, Time complexity' },
-    { name: 'OOP Principles', category: 'core', level: 'Proficient', icon: '🧩', desc: 'Encapsulation, Polymorphism, Inheritance, Abstraction' },
-    { name: 'DBMS & SQL', category: 'core', level: 'Intermediate', icon: '🗄️', desc: 'Relational design, Normalization, Queries' },
+    // Web Technologies
+    { 
+      id: 'html',
+      name: 'HTML', 
+      category: 'web', 
+      level: 'Proficient', 
+      icon: '🌐', 
+      desc: 'Semantic page structure, accessible forms, audio/video elements, and modern HTML5 standards.' 
+    },
+    { 
+      id: 'css',
+      name: 'CSS', 
+      category: 'web', 
+      level: 'Proficient', 
+      icon: '🎨', 
+      desc: 'Modern styling, Flexbox, CSS Grid layouts, responsive UI, gradients, and micro-animations.' 
+    },
 
     // Tools & Workflow
-    { name: 'Git & GitHub', category: 'tools', level: 'Proficient', icon: '🐙', desc: 'Version control, Branching, Pull requests' },
-    { name: 'VS Code', category: 'tools', level: 'Proficient', icon: '💻', desc: 'Extensions, Debugging, Productivity workflows' },
-    { name: 'Command Line / Bash', category: 'tools', level: 'Intermediate', icon: '📟', desc: 'File operations, Shell scripting basics, NPM' },
-    { name: 'Postman', category: 'tools', level: 'Intermediate', icon: '📬', desc: 'API testing, Endpoint inspection, Requests' }
+    { 
+      id: 'vscode',
+      name: 'VS Code', 
+      category: 'tools', 
+      level: 'Proficient', 
+      icon: '💻', 
+      desc: 'Primary code editor, extensions, integrated terminal, debugging tools, and custom shortcuts.' 
+    },
+    { 
+      id: 'gitgithub',
+      name: 'Git & GitHub', 
+      category: 'tools', 
+      level: 'Proficient', 
+      icon: '🐙', 
+      desc: 'Distributed version control, commits, branching, pull requests, and repository management.' 
+    }
   ];
 
   const filteredSkills = activeTab === 'all' 
@@ -46,12 +91,12 @@ const Skills = () => {
     <section id="skills" className="skills-section">
       <div className="container">
         <div className="section-header">
-          <span className="section-pill">Technical Toolkit</span>
+          <span className="section-pill">Technical Stack</span>
           <h2 className="section-title">
-            Skills & <span className="gradient-text">Competencies</span>
+            Skills & <span className="gradient-text">Technologies</span>
           </h2>
           <p className="section-subtitle">
-            Technologies and concepts I utilize to design, build, and deploy reliable software solutions.
+            Core programming languages, web technologies, and developer tools I actively work with.
           </p>
         </div>
 
@@ -71,8 +116,8 @@ const Skills = () => {
 
         {/* Skills Grid */}
         <div className="skills-grid">
-          {filteredSkills.map((skill, idx) => (
-            <div key={idx} className="skill-card glass-panel">
+          {filteredSkills.map((skill) => (
+            <div key={skill.id} className="skill-card glass-panel">
               <div className="skill-card-top">
                 <span className="skill-icon-emoji">{skill.icon}</span>
                 <span className={`skill-level-badge level-${skill.level.toLowerCase()}`}>

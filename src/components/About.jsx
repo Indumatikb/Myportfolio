@@ -53,8 +53,8 @@ const About = () => {
               </p>
               <p>
                 I thrive in turning ideas into practical, tangible projects. Currently, I am actively deepening my 
-                knowledge in <strong>JavaScript, Java, Python, Web Development (React & Node.js)</strong>, 
-                and core computer science principles.
+                knowledge in <strong>Python, Java, C, JavaScript, HTML, CSS</strong>, 
+                and core software development workflows with Git and VS Code.
               </p>
               <p>
                 Whether it's writing algorithms, designing responsive interfaces, or debugging backend logic, 
