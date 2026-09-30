@@ -1,47 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Code, 
-  Flame, 
-  Award, 
-  Milestone,
-  BookOpen
-} from 'lucide-react';
+import React from 'react';
+import { Milestone } from 'lucide-react';
 import './Journey.css';
 
-const StatCounter = ({ target, suffix = '+' }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let current = 0;
-    const duration = 1400;
-    const intervalTime = 30;
-    const totalSteps = duration / intervalTime;
-    const stepIncrement = target / totalSteps;
-
-    const timer = setInterval(() => {
-      current += stepIncrement;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, intervalTime);
-
-    return () => clearInterval(timer);
-  }, [target]);
-
-  return <span>{count}{suffix}</span>;
-};
-
 const Journey = () => {
-  const stats = [
-    { label: 'Core Technical Skills', target: 15, suffix: '+', icon: <Code size={20} /> },
-    { label: 'Consistent Learning Days', target: 180, suffix: '+', icon: <Flame size={20} /> },
-    { label: 'Core CS Subject Modules', target: 8, suffix: '+', icon: <BookOpen size={20} /> },
-    { label: 'Algorithmic Problems Solved', target: 120, suffix: '+', icon: <Award size={20} /> }
-  ];
-
   const milestones = [
     {
       year: '2021',
@@ -76,19 +37,6 @@ const Journey = () => {
           <p className="section-subtitle">
             A reflection of dedication, continuous learning, and key milestones in my academic and engineering evolution.
           </p>
-        </div>
-
-        {/* Stats Row */}
-        <div className="stats-row">
-          {stats.map((stat, i) => (
-            <div key={i} className="stat-card glass-panel">
-              <div className="stat-icon-wrap">{stat.icon}</div>
-              <div className="stat-value">
-                <StatCounter target={stat.target} suffix={stat.suffix} />
-              </div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
         </div>
 
         {/* Timeline of Milestones */}
