@@ -1,4 +1,14 @@
 import React, { useState } from 'react';
+import { 
+  PythonIcon, 
+  CIcon, 
+  JavaIcon, 
+  JavaScriptIcon, 
+  HTMLIcon, 
+  CSSIcon, 
+  VSCodeIcon, 
+  GitGitHubIcon 
+} from './Icons';
 import './Skills.css';
 
 const Skills = () => {
@@ -18,7 +28,8 @@ const Skills = () => {
       name: 'Python', 
       category: 'languages', 
       level: 'Intermediate', 
-      icon: '🐍', 
+      color: '#387eb8',
+      icon: <PythonIcon size={34} />,
       desc: 'Core syntax, scripting, data structures, and problem-solving logic.' 
     },
     { 
@@ -26,7 +37,8 @@ const Skills = () => {
       name: 'C', 
       category: 'languages', 
       level: 'Foundational', 
-      icon: '⚙️', 
+      color: '#659AD2',
+      icon: <CIcon size={34} />,
       desc: 'Memory concepts, pointers, structured programming, and core algorithmic fundamentals.' 
     },
     { 
@@ -34,7 +46,8 @@ const Skills = () => {
       name: 'Java', 
       category: 'languages', 
       level: 'Intermediate', 
-      icon: '☕', 
+      color: '#ea2d2e',
+      icon: <JavaIcon size={34} />,
       desc: 'Object-oriented programming, classes, inheritance, polymorphism, and collections.' 
     },
     { 
@@ -42,7 +55,8 @@ const Skills = () => {
       name: 'JavaScript (JS)', 
       category: 'languages', 
       level: 'Intermediate', 
-      icon: '⚡', 
+      color: '#F7DF1E',
+      icon: <JavaScriptIcon size={34} />,
       desc: 'Modern ES6+ syntax, DOM manipulation, event handling, and dynamic web functionality.' 
     },
 
@@ -52,7 +66,8 @@ const Skills = () => {
       name: 'HTML', 
       category: 'web', 
       level: 'Proficient', 
-      icon: '🌐', 
+      color: '#E34F26',
+      icon: <HTMLIcon size={34} />,
       desc: 'Semantic page structure, accessible forms, audio/video elements, and modern HTML5 standards.' 
     },
     { 
@@ -60,7 +75,8 @@ const Skills = () => {
       name: 'CSS', 
       category: 'web', 
       level: 'Proficient', 
-      icon: '🎨', 
+      color: '#1572B6',
+      icon: <CSSIcon size={34} />,
       desc: 'Modern styling, Flexbox, CSS Grid layouts, responsive UI, gradients, and micro-animations.' 
     },
 
@@ -70,7 +86,8 @@ const Skills = () => {
       name: 'VS Code', 
       category: 'tools', 
       level: 'Proficient', 
-      icon: '💻', 
+      color: '#007ACC',
+      icon: <VSCodeIcon size={34} />,
       desc: 'Primary code editor, extensions, integrated terminal, debugging tools, and custom shortcuts.' 
     },
     { 
@@ -78,7 +95,8 @@ const Skills = () => {
       name: 'Git & GitHub', 
       category: 'tools', 
       level: 'Proficient', 
-      icon: '🐙', 
+      color: '#F05032',
+      icon: <GitGitHubIcon size={34} />,
       desc: 'Distributed version control, commits, branching, pull requests, and repository management.' 
     }
   ];
@@ -117,9 +135,15 @@ const Skills = () => {
         {/* Skills Grid */}
         <div className="skills-grid">
           {filteredSkills.map((skill) => (
-            <div key={skill.id} className="skill-card glass-panel">
+            <div 
+              key={skill.id} 
+              className="skill-card glass-panel"
+              style={{ '--brand-color': skill.color }}
+            >
               <div className="skill-card-top">
-                <span className="skill-icon-emoji">{skill.icon}</span>
+                <div className="skill-brand-icon-box">
+                  {skill.icon}
+                </div>
                 <span className={`skill-level-badge level-${skill.level.toLowerCase()}`}>
                   {skill.level}
                 </span>
