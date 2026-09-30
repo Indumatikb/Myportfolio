@@ -53,83 +53,33 @@ body {
   position: relative;
 }
 
-/* Background Cyber Grid */
-.bg-grid-pattern {
+/* Generative Kinetic Wireframe Canvas Background (Inspired by lucasvallenet.com) */
+.canvas-background-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-size: 50px 50px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 60%, transparent 100%);
   pointer-events: none;
   z-index: 0;
-}
-
-/* Floating Ambient Orbs - Pure CSS, zero CPU overhead */
-.ambient-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
   overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
+  background-color: var(--bg-primary);
 }
 
-.ambient-orb {
+.kinetic-tunnel-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.canvas-vignette-overlay {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(110px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 45%, rgba(7, 9, 19, 0.5) 100%);
   pointer-events: none;
-  opacity: 0.22;
-  animation: floatOrb 22s ease-in-out infinite alternate;
-}
-
-.orb-cyan {
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, #38bdf8 0%, #6366f1 70%);
-  top: -120px;
-  left: -120px;
-}
-
-.orb-purple {
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, #a855f7 0%, #ec4899 70%);
-  bottom: 5%;
-  right: -100px;
-  animation-duration: 26s;
-  animation-delay: -6s;
-}
-
-.orb-indigo {
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, #6366f1 0%, #06b6d4 70%);
-  top: 40%;
-  left: 35%;
-  animation-duration: 28s;
-  animation-delay: -12s;
-  opacity: 0.14;
-}
-
-@keyframes floatOrb {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(50px, 35px) scale(1.06);
-  }
-  100% {
-    transform: translate(-35px, 60px) scale(0.96);
-  }
 }
 
 /* Typography */
