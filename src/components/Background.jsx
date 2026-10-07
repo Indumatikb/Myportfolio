@@ -10,7 +10,7 @@ const Background = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Device Pixel Ratio capped at 2 for crispness and optimal 60fps performance
+    // Device Pixel Ratio capped at 2 for razor-sharp rendering & smooth 60fps
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
     let size = { width: 0, height: 0 };
@@ -27,10 +27,21 @@ const Background = () => {
 
     // Randomized phase offset
     const tOffset = Math.PI * Math.random();
-    const totalEllipses = 40;
+    const totalEllipses = 42;
     const mouseDelta = 0.5;
 
     const hasPointer = window.matchMedia('(hover: hover)').matches;
+
+    // Ambient twinkling cosmic dust particles
+    const particles = Array.from({ length: 35 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      size: Math.random() * 1.6 + 0.6,
+      speedX: (Math.random() - 0.5) * 0.00015,
+      speedY: (Math.random() - 0.5) * 0.00015,
+      baseOpacity: Math.random() * 0.45 + 0.15,
+      phase: Math.random() * Math.PI * 2
+    }));
 
     // Sizing calculation matching lucasvallenet.com DPRValue (multiples of 4)
     const resizeCanvas = () => {
@@ -48,11 +59,10 @@ const Background = () => {
 
     resizeCanvas();
 
-    // Mouse move tracking with mapRange scale dampening
+    // Mouse move tracking with dampening factor
     const handleMouseMove = (e) => {
       if (!hasPointer || size.width === 0 || size.height === 0) return;
 
-      // Map range: scale between 0.2 and 1.8 maps dampening factor between 0.2 and 1.0
       const clampedScale = Math.min(Math.max(scale, 0.2), 1.8);
       const scaleDampen = 0.2 + ((clampedScale - 0.2) / 1.6) * 0.8;
 
@@ -67,7 +77,6 @@ const Background = () => {
     const handleScroll = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
       const progress = scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
-      // Interpolate scale target from 0.25 (at hero) to 1.75 (at footer)
       scaleTarget = 0.25 + progress * 1.5;
     };
 
@@ -92,13 +101,42 @@ const Background = () => {
 
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-      // Rotation progression matching lucasvallenet.com ticker time formula
       const timeInSec = performance.now() * 0.001;
       const t = timeInSec * 0.15 + tOffset;
       const maxDim = Math.max(canvasWidth, canvasHeight);
 
-      ctx.lineWidth = Math.max(1, 1.15 * DPR);
+      // Render cosmic background particles
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x = (p.x + p.speedX + 1) % 1;
+        p.y = (p.y + p.speedY + 1) % 1;
 
+        const px = p.x * canvasWidth + mousePosition.x * 20 * DPR;
+        const py = p.y * canvasHeight + mousePosition.y * 20 * DPR;
+        const flicker = Math.sin(timeInSec * 1.5 + p.phase) * 0.2 + 0.8;
+        const currentOpacity = Math.max(0.05, p.baseOpacity * flicker);
+
+        ctx.beginPath();
+        ctx.arc(px, py, p.size * DPR, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(148, 163, 184, ${currentOpacity})`;
+        ctx.fill();
+      }
+
+      // Render interactive luminous cursor spotlight
+      if (hasPointer && (mousePosition.x !== 0 || mousePosition.y !== 0)) {
+        const spotX = 0.5 * canvasWidth + mousePosition.x * 0.45 * canvasWidth;
+        const spotY = 0.5 * canvasHeight + mousePosition.y * 0.45 * canvasHeight;
+        const spotGrad = ctx.createRadialGradient(spotX, spotY, 20, spotX, spotY, 360 * DPR);
+        spotGrad.addColorStop(0, 'rgba(56, 189, 248, 0.065)');
+        spotGrad.addColorStop(0.5, 'rgba(99, 102, 241, 0.025)');
+        spotGrad.addColorStop(1, 'rgba(6, 8, 19, 0)');
+        ctx.fillStyle = spotGrad;
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+      }
+
+      ctx.lineWidth = Math.max(1, 1.2 * DPR);
+
+      // Render rotating helical wireframe tunnel with chromatic depth
       for (let e = 1; e <= totalEllipses; e++) {
         const r = e / totalEllipses;
 
@@ -116,9 +154,18 @@ const Background = () => {
         ctx.beginPath();
         ctx.ellipse(centerX, centerY, radiusX, radiusY, rotation, 0, 2 * Math.PI);
 
-        // Sleek depth opacity: rings further away soften slightly for rich atmospheric depth
-        const opacity = 0.28 + r * 0.48;
-        ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
+        // Chromatic multi-stop gradient for the wireframe strokes
+        const opacity = 0.2 + r * 0.5;
+        const grad = ctx.createLinearGradient(
+          centerX - radiusX, centerY - radiusY,
+          centerX + radiusX, centerY + radiusY
+        );
+
+        grad.addColorStop(0, `rgba(56, 189, 248, ${opacity})`);       // Electric Cyan
+        grad.addColorStop(0.5, `rgba(99, 102, 241, ${opacity * 0.85})`); // Indigo
+        grad.addColorStop(1, `rgba(192, 132, 252, ${opacity * 0.75})`); // Lavender/Violet
+
+        ctx.strokeStyle = grad;
         ctx.stroke();
       }
 
@@ -141,8 +188,9 @@ const Background = () => {
   return (
     <div className="canvas-background-container" aria-hidden="true">
       <canvas ref={canvasRef} className="kinetic-tunnel-canvas" />
-      {/* Subtle vignette overlay to ensure text readability */}
+      {/* Ambient Vignette & Bloom Overlays */}
       <div className="canvas-vignette-overlay" />
+      <div className="ambient-glow-top" />
     </div>
   );
 };
