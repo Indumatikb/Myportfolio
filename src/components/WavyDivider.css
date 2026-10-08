@@ -1,0 +1,80 @@
+.wavy-divider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wavy-divider-wrapper.flipped {
+  transform: rotate(180deg);
+}
+
+.wavy-divider-svg {
+  position: relative;
+  display: block;
+  width: 125%;
+  left: -12.5%;
+  height: 100%;
+}
+
+/* Layer 1: Slow breathing wave */
+.wave-layer-1 {
+  animation: waveMotion1 16s ease-in-out infinite alternate;
+  transform-origin: 50% 50%;
+}
+
+/* Layer 2: Counter-undulating middle wave */
+.wave-layer-2 {
+  animation: waveMotion2 12s ease-in-out infinite alternate;
+  transform-origin: 40% 60%;
+}
+
+/* Layer 3: Foreground lively wave */
+.wave-layer-3 {
+  animation: waveMotion3 9s ease-in-out infinite alternate;
+  transform-origin: 60% 40%;
+}
+
+/* Luminous crest line */
+.wave-crest-line {
+  animation: waveMotion3 9s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+}
+
+@keyframes waveMotion1 {
+  0% {
+    transform: translateX(-40px) scaleY(1);
+  }
+  50% {
+    transform: translateX(20px) scaleY(1.15);
+  }
+  100% {
+    transform: translateX(40px) scaleY(0.92);
+  }
+}
+
+@keyframes waveMotion2 {
+  0% {
+    transform: translateX(35px) scaleY(0.9);
+  }
+  50% {
+    transform: translateX(-25px) scaleY(1.18);
+  }
+  100% {
+    transform: translateX(-40px) scaleY(0.95);
+  }
+}
+
+@keyframes waveMotion3 {
+  0% {
+    transform: translateX(-30px) scaleY(1.05);
+  }
+  50% {
+    transform: translateX(35px) scaleY(0.88);
+  }
+  100% {
+    transform: translateX(15px) scaleY(1.12);
+  }
+}
