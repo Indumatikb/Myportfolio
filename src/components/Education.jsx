@@ -1,5 +1,6 @@
 import React from 'react';
 import { GraduationCap, BookOpen, School, Calendar, MapPin, CheckCircle2, Award } from 'lucide-react';
+import WavyUnderline from './WavyUnderline';
 import './Education.css';
 
 const Education = () => {
@@ -62,7 +63,11 @@ const Education = () => {
         <div className="section-header">
           <span className="section-pill">Academic Journey</span>
           <h2 className="section-title">
-            Education & <span className="gradient-text">Academic Background</span>
+            Education &{' '}
+            <span className="wavy-title-accent">
+              <span className="gradient-text">Academic Background</span>
+              <WavyUnderline color="#818cf8" height={8} />
+            </span>
           </h2>
           <p className="section-subtitle">
             Formal education providing strong foundational discipline, theoretical depth, and engineering rigor.

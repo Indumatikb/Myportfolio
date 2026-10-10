@@ -9,6 +9,7 @@ import {
   VSCodeIcon, 
   GitGitHubIcon 
 } from './Icons';
+import WavyUnderline from './WavyUnderline';
 import './Skills.css';
 
 const Skills = () => {
@@ -111,7 +112,11 @@ const Skills = () => {
         <div className="section-header">
           <span className="section-pill">Technical Stack</span>
           <h2 className="section-title">
-            Skills & <span className="gradient-text">Technologies</span>
+            Skills &{' '}
+            <span className="wavy-title-accent">
+              <span className="gradient-text">Technologies</span>
+              <WavyUnderline color="#38bdf8" height={8} />
+            </span>
           </h2>
           <p className="section-subtitle">
             Core programming languages, web technologies, and developer tools I actively work with.

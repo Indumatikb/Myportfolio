@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExternalLink, Globe, Users, Sparkles, CheckCircle2 } from 'lucide-react';
+import WavyUnderline from './WavyUnderline';
 import './Projects.css';
 
 const Projects = () => {
@@ -9,7 +10,11 @@ const Projects = () => {
         <div className="section-header">
           <span className="section-pill">Featured Project</span>
           <h2 className="section-title">
-            Featured <span className="gradient-text">Build</span>
+            Featured{' '}
+            <span className="wavy-title-accent">
+              <span className="gradient-text">Build</span>
+              <WavyUnderline color="#38bdf8" height={8} />
+            </span>
           </h2>
           <p className="section-subtitle">
             Practical builds from coursework, personal learning, and student-focused product development.

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code, Compass, Target, Laptop, Sparkles, CheckCircle2 } from 'lucide-react';
+import WavyUnderline from './WavyUnderline';
 import './About.css';
 
 const About = () => {
@@ -32,7 +33,11 @@ const About = () => {
         <div className="section-header">
           <span className="section-pill">About Me</span>
           <h2 className="section-title">
-            Passionate About <span className="gradient-text">Code & Engineering</span>
+            Passionate About{' '}
+            <span className="wavy-title-accent">
+              <span className="gradient-text">Code & Engineering</span>
+              <WavyUnderline color="#818cf8" height={8} />
+            </span>
           </h2>
         </div>
 
