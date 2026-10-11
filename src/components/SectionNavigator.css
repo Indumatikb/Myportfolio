@@ -1,0 +1,206 @@
+.section-hud-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: auto;
+}
+
+.section-hud-pill {
+  display: flex;
+  align-items: center;
+  background: var(--glass-bg, rgba(9, 13, 34, 0.85));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border, rgba(0, 240, 255, 0.2));
+  border-radius: 9999px;
+  padding: 4px 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(var(--theme-glow-rgb, 0, 240, 255), 0.15);
+  gap: 6px;
+  transition: all var(--transition-medium);
+}
+
+.section-hud-pill:hover {
+  border-color: var(--glass-border-hover, rgba(0, 240, 255, 0.5));
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(var(--theme-glow-rgb, 0, 240, 255), 0.3);
+}
+
+.hud-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hud-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hud-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--theme-accent-primary, #00f0ff);
+  box-shadow: 0 0 10px var(--theme-accent-primary, #00f0ff);
+  animation: pulseBeacon 2s infinite ease-in-out;
+}
+
+.hud-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-index {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--theme-accent-primary, #00f0ff);
+  opacity: 0.85;
+}
+
+.hud-title {
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+}
+
+.hud-chevron {
+  color: var(--text-muted);
+  transition: transform 0.25s ease;
+}
+
+.hud-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.hud-next-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-radius: 9999px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hud-next-btn:hover {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(var(--theme-glow-rgb, 0, 240, 255), 0.4);
+  transform: translateX(2px);
+}
+
+.hud-dropdown-menu {
+  margin-bottom: 8px;
+  width: 240px;
+  padding: 8px;
+  background: var(--glass-bg, rgba(9, 13, 34, 0.95));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(var(--theme-glow-rgb, 0, 240, 255), 0.2);
+  border-radius: 16px;
+  animation: slideUpFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hud-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--theme-accent-primary, #00f0ff);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 4px;
+}
+
+.hud-dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud-dropdown-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.hud-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  transform: translateX(3px);
+}
+
+.hud-dropdown-item.active {
+  background: rgba(var(--theme-glow-rgb, 0, 240, 255), 0.12);
+  color: var(--theme-accent-primary, #00f0ff);
+  font-weight: 700;
+}
+
+.hud-item-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  opacity: 0.7;
+  width: 26px;
+}
+
+.hud-item-name {
+  flex: 1;
+}
+
+.hud-item-check {
+  color: var(--theme-accent-primary, #00f0ff);
+}
+
+@media (max-width: 640px) {
+  .section-hud-container {
+    bottom: 14px;
+    left: 14px;
+  }
+  .hud-next-btn {
+    display: none;
+  }
+  .section-hud-pill {
+    padding: 3px 6px;
+  }
+}
