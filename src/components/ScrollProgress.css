@@ -1,0 +1,29 @@
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.04);
+  z-index: 10001;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: var(--gradient-primary, linear-gradient(90deg, #00f0ff, #8b5cf6, #ec4899));
+  position: relative;
+  transition: width 0.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+  box-shadow: 0 0 12px rgba(var(--theme-glow-rgb, 0, 240, 255), 0.7);
+}
+
+.scroll-progress-glow-tip {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 14px 4px rgba(var(--theme-glow-rgb, 0, 240, 255), 0.95);
+}
