@@ -47,7 +47,7 @@ const Contact = () => {
             Let's{' '}
             <span className="wavy-title-accent">
               <span className="gradient-text">Connect</span>
-              <WavyUnderline color="#c084fc" height={8} />
+              <WavyUnderline color="#4f46e5" height={4} width="80px" />
             </span>
           </h2>
           <p className="section-subtitle">
@@ -136,7 +136,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Column: Interactive Form */}
+          {/* Right Column: Clean Form */}
           <div className="contact-form-card glass-panel">
             <h3 className="form-card-title">Send a Direct Message</h3>
             
@@ -150,125 +150,62 @@ const Contact = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="contact-form" id="portfolio-contact-form">
-                {/* SVG Gradient definitions for wavy input lines */}
-                <svg className="hidden-svg-defs" aria-hidden="true" style={{ position: 'absolute', width: 0, height: 0 }}>
-                  <defs>
-                    <linearGradient id="waveInputGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#38bdf8" />
-                      <stop offset="50%" stopColor="#818cf8" />
-                      <stop offset="100%" stopColor="#c084fc" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-
                 <div className="form-group">
                   <label htmlFor="contact-name" className="form-label">Your Name</label>
-                  <div className="form-input-container">
-                    <input
-                      type="text"
-                      id="contact-name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="e.g. Alex Johnson"
-                      className="form-input"
-                    />
-                    <div className="wavy-focus-line" aria-hidden="true">
-                      <svg viewBox="0 0 400 12" preserveAspectRatio="none" className="wavy-focus-svg">
-                        <path
-                          d="M0,6 Q20,1 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6"
-                          fill="none"
-                          stroke="url(#waveInputGrad)"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. Alex Johnson"
+                    className="form-input"
+                  />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="contact-email" className="form-label">Your Email</label>
-                  <div className="form-input-container">
-                    <input
-                      type="email"
-                      id="contact-email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="e.g. alex@example.com"
-                      className="form-input"
-                    />
-                    <div className="wavy-focus-line" aria-hidden="true">
-                      <svg viewBox="0 0 400 12" preserveAspectRatio="none" className="wavy-focus-svg">
-                        <path
-                          d="M0,6 Q20,1 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6"
-                          fill="none"
-                          stroke="url(#waveInputGrad)"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. alex@example.com"
+                    className="form-input"
+                  />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="contact-subject" className="form-label">Subject</label>
-                  <div className="form-input-container">
-                    <input
-                      type="text"
-                      id="contact-subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Internship opportunity / Project collaboration"
-                      className="form-input"
-                    />
-                    <div className="wavy-focus-line" aria-hidden="true">
-                      <svg viewBox="0 0 400 12" preserveAspectRatio="none" className="wavy-focus-svg">
-                        <path
-                          d="M0,6 Q20,1 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6"
-                          fill="none"
-                          stroke="url(#waveInputGrad)"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+                  <input
+                    type="text"
+                    id="contact-subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Internship opportunity / Project collaboration"
+                    className="form-input"
+                  />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="contact-message" className="form-label">Message</label>
-                  <div className="form-input-container">
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      rows="4"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      placeholder="Hi Indumati, I'd like to discuss..."
-                      className="form-input form-textarea"
-                    ></textarea>
-                    <div className="wavy-focus-line" aria-hidden="true">
-                      <svg viewBox="0 0 400 12" preserveAspectRatio="none" className="wavy-focus-svg">
-                        <path
-                          d="M0,6 Q20,1 40,6 T80,6 T120,6 T160,6 T200,6 T240,6 T280,6 T320,6 T360,6 T400,6"
-                          fill="none"
-                          stroke="url(#waveInputGrad)"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="4"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Hi Indumati, I'd like to discuss..."
+                    className="form-input form-textarea"
+                  ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary submit-btn btn-wavy-shimmer" id="contact-submit-btn">
+                <button type="submit" className="btn btn-primary submit-btn" id="contact-submit-btn">
                   <span>Send Message</span>
                   <Send size={16} style={{ marginLeft: '8px' }} />
                 </button>

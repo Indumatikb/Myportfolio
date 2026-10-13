@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, Code2, MapPin, GraduationCap, Terminal, Rocket, CheckCircle2 } from 'lucide-react';
-import HeroWaveform from './HeroWaveform';
+import { ArrowRight, Sparkles, Code2, MapPin, GraduationCap, Terminal, Rocket } from 'lucide-react';
 import WavyUnderline from './WavyUnderline';
 import './Hero.css';
 
@@ -67,7 +66,7 @@ const Hero = () => {
         <h1 className="hero-title">
           <span className="name-highlight-wrapper">
             <span className="name-highlight">Indumati Kallanagoud Biradar</span>
-            <WavyUnderline color="#38bdf8" height={10} />
+            <WavyUnderline color="#4f46e5" height={4} width="120px" />
           </span>
           <span className="role-subtext-container">
             <span className="role-typing-text">{displayText}</span>
@@ -136,9 +135,6 @@ const Hero = () => {
             </div>
           </div>
         </div>
-
-        {/* Interactive Kinetic Waveform Visualizer */}
-        <HeroWaveform />
 
       </div>
     </section>

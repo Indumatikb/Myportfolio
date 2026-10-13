@@ -1,26 +1,22 @@
 import React from 'react';
 
 /**
- * Animated SVG sinusoidal squiggly wave underline.
+ * Modern, clean gradient accent underline (replaces wavy squiggly lines).
  */
-const WavyUnderline = ({ color = '#38bdf8', height = 10, width = '100%' }) => {
+const WavyUnderline = ({ color = '#4f46e5', height = 3, width = '80px' }) => {
   return (
-    <span className="wavy-underline-container" style={{ width, height: `${height}px` }} aria-hidden="true">
-      <svg
-        className="wavy-underline-svg"
-        viewBox="0 0 300 20"
-        preserveAspectRatio="none"
-      >
-        <path
-          className="wavy-underline-path"
-          d="M0,10 Q25,2 50,10 T100,10 T150,10 T200,10 T250,10 T300,10"
-          fill="none"
-          stroke={color}
-          strokeWidth="3.2"
-          strokeLinecap="round"
-        />
-      </svg>
-    </span>
+    <span
+      className="accent-underline-bar"
+      style={{
+        display: 'block',
+        width,
+        height: `${height}px`,
+        margin: '6px auto 0',
+        borderRadius: '9999px',
+        background: `linear-gradient(90deg, ${color}, #8b5cf6, transparent)`,
+      }}
+      aria-hidden="true"
+    />
   );
 };
 
