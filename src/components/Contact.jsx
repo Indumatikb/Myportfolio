@@ -15,7 +15,7 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const emailAddress = "indumatibiradar.dev@gmail.com";
+  const emailAddress = "indumatikbiradar@gmail.com";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

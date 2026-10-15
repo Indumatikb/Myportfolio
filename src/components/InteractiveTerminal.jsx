@@ -82,7 +82,7 @@ const COMMANDS = {
     description: 'Contact coordinates',
     action: () => [
       'REACH OUT TO INDUMATI:',
-      '  • Email: indumatibiradar.dev@gmail.com',
+      '  • Email: indumatikbiradar@gmail.com',
       '  • Location: Karnataka, India',
       '  • Open to: Summer Internships, Software Engineering Roles, Tech Projects'
     ]
