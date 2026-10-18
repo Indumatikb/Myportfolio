@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Terminal, Send, Play, Sparkles, Check, Copy } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
 import './InteractiveTerminal.css';
 
 const COMMANDS = {
@@ -100,7 +99,6 @@ const COMMANDS = {
 };
 
 const InteractiveTerminal = () => {
-  const { themeConfig } = useTheme();
   const [history, setHistory] = useState([
     {
       type: 'system',
