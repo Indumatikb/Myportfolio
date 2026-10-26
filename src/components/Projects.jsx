@@ -1,36 +1,82 @@
-import React from 'react';
-import { ExternalLink, Globe, Users, Sparkles, CheckCircle2, Calendar, ShieldCheck, Activity, CreditCard, ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { 
+  ExternalLink, 
+  Globe, 
+  Users, 
+  Sparkles, 
+  CheckCircle2, 
+  Calendar, 
+  ShieldCheck, 
+  Activity, 
+  CreditCard, 
+  ArrowUpRight, 
+  Layers, 
+  Code2, 
+  Terminal, 
+  Check 
+} from 'lucide-react';
 import WavyUnderline from './WavyUnderline';
 import './Projects.css';
 
+const SECONDARY_PROJECTS = [
+  {
+    id: 'dsa-viz',
+    title: 'Algorithmic & DSA Visualizer',
+    tagline: 'Interactive Pathfinding & Sorting Simulation',
+    category: 'algorithms',
+    description: 'An interactive developer visualizer built to demonstrate sorting algorithms (Merge Sort, Quick Sort) and graph traversals (Dijkstra, BFS, DFS) with real-time step execution.',
+    tags: ['Python Logic', 'JavaScript', 'React', 'Canvas API', 'Algorithms'],
+    metrics: 'O(V + E) Traversals • Interactive Speed Slider',
+    github: 'https://github.com'
+  },
+  {
+    id: 'campus-sync',
+    title: 'CampusSync Academic Hub',
+    category: 'fullstack',
+    tagline: 'College Resource & Event Logistics System',
+    description: 'A responsive student portal managing technical fest schedules, study material repositories, and project team collaborations with relational database backing.',
+    tags: ['JavaScript', 'HTML5 & CSS3', 'SQL Schema', 'REST Architecture'],
+    metrics: 'Relational DB • Role-Based Views',
+    github: 'https://github.com'
+  }
+];
+
 const Projects = () => {
+  const [activeTab, setActiveTab] = useState('overview'); // overview, architecture, ledger
+  const [projectFilter, setProjectFilter] = useState('all');
+
+  const filteredSecondary = projectFilter === 'all' 
+    ? SECONDARY_PROJECTS 
+    : SECONDARY_PROJECTS.filter(p => p.category === projectFilter || projectFilter === 'secondary');
+
   return (
     <section id="projects" className="projects-section">
       <div className="container">
         
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-pill">Featured Project</span>
+          <span className="section-pill">Featured Work</span>
           <h2 className="section-title">
-            Featured <span className="gradient-text">Startup Build</span>
+            Featured <span className="gradient-text">Projects & Startup Builds</span>
           </h2>
-          <WavyUnderline color="#4f46e5" height={4} width="100px" />
+          <WavyUnderline color="#6366f1" height={4} width="100px" />
           <p className="section-subtitle">
-            Engineered from ground up: practical product development, real users, structured workflows, and full-stack thinking.
+            Engineered from ground up: production architectures, real users, structured workflows, and full-stack execution.
           </p>
         </div>
 
-        {/* EventLedger Showcase Container */}
+        {/* Flagship Project Card: EventLedger.me */}
         <div className="eventledger-showcase-card glass-panel">
           
           <div className="el-card-grid">
             
             {/* Left: Project Brand, Metrics & Story */}
             <div className="el-meta-col">
+              
               <div className="el-badge-row">
                 <span className="el-startup-badge">
                   <Sparkles size={13} className="el-spark-icon" />
-                  Active Startup Platform
+                  Flagship Startup Platform
                 </span>
                 <span className="el-live-indicator">
                   <span className="live-dot-pulse"></span>
@@ -43,50 +89,110 @@ const Projects = () => {
                 Next-generation event management and transparent financial ledger platform built for colleges, tech fests, and student communities.
               </p>
 
-              {/* Key Features List */}
-              <div className="el-features-list">
-                <div className="el-feature-bullet">
-                  <CheckCircle2 size={16} className="feature-check" />
-                  <span>Real-time attendee registration & ticketing workflows</span>
-                </div>
-                <div className="el-feature-bullet">
-                  <CheckCircle2 size={16} className="feature-check" />
-                  <span>Transparent budget & financial ledger analytics</span>
-                </div>
-                <div className="el-feature-bullet">
-                  <CheckCircle2 size={16} className="feature-check" />
-                  <span>High-performance mobile-first responsive architecture</span>
-                </div>
+              {/* Interactive Showcase Tabs */}
+              <div className="el-feature-tabs">
+                <button 
+                  className={`el-tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('overview')}
+                >
+                  Overview
+                </button>
+                <button 
+                  className={`el-tab-btn ${activeTab === 'architecture' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('architecture')}
+                >
+                  Architecture
+                </button>
+                <button 
+                  className={`el-tab-btn ${activeTab === 'ledger' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('ledger')}
+                >
+                  Live Ledger Flow
+                </button>
+              </div>
+
+              {/* Tab Content Display */}
+              <div className="el-tab-content-area">
+                {activeTab === 'overview' && (
+                  <div className="el-features-list">
+                    <div className="el-feature-bullet">
+                      <CheckCircle2 size={16} className="feature-check" />
+                      <span>Real-time attendee registration and automated ticketing pass generation</span>
+                    </div>
+                    <div className="el-feature-bullet">
+                      <CheckCircle2 size={16} className="feature-check" />
+                      <span>Transparent public budget allocation & instant expenditure tracking</span>
+                    </div>
+                    <div className="el-feature-bullet">
+                      <CheckCircle2 size={16} className="feature-check" />
+                      <span>High-performance mobile-first responsive UI engineered with Vite & React</span>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'architecture' && (
+                  <div className="el-features-list">
+                    <div className="el-feature-bullet">
+                      <ShieldCheck size={16} className="feature-check" />
+                      <span>Zero-latency edge routing served on high-availability global CDNs</span>
+                    </div>
+                    <div className="el-feature-bullet">
+                      <ShieldCheck size={16} className="feature-check" />
+                      <span>Client-side ledger state verification with robust schema validation</span>
+                    </div>
+                    <div className="el-feature-bullet">
+                      <ShieldCheck size={16} className="feature-check" />
+                      <span>Component modularity: reusable modals, analytics widgets, export utilities</span>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'ledger' && (
+                  <div className="el-features-list">
+                    <div className="el-feature-bullet">
+                      <Activity size={16} className="feature-check" />
+                      <span>Multi-event support: parallel fests, workshops, and team hackathons</span>
+                    </div>
+                    <div className="el-feature-bullet">
+                      <Activity size={16} className="feature-check" />
+                      <span>Instant balance calculation with verifiable transaction hashes</span>
+                    </div>
+                    <div className="el-feature-bullet">
+                      <Activity size={16} className="feature-check" />
+                      <span>Auditable logs designed for college student council reviews</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Meta Specs Grid */}
               <div className="el-meta-specs-grid">
                 <div className="el-spec-box">
-                  <Globe size={16} className="spec-icon" />
+                  <Globe size={15} className="spec-icon" />
                   <div className="spec-text">
-                    <span className="spec-label">Domain</span>
+                    <span className="spec-label">Live Domain</span>
                     <span className="spec-val">eventledger.me</span>
                   </div>
                 </div>
                 <div className="el-spec-box">
-                  <Users size={16} className="spec-icon" />
+                  <Users size={15} className="spec-icon" />
                   <div className="spec-text">
                     <span className="spec-label">Target Audience</span>
-                    <span className="spec-val">College & Fest Leads</span>
+                    <span className="spec-val">Fest Leads & Attendees</span>
                   </div>
                 </div>
                 <div className="el-spec-box">
-                  <Activity size={16} className="spec-icon" />
+                  <Activity size={15} className="spec-icon" />
                   <div className="spec-text">
-                    <span className="spec-label">Deployment</span>
-                    <span className="spec-val">Global Edge Network</span>
+                    <span className="spec-label">Status</span>
+                    <span className="spec-val">Production Deployed</span>
                   </div>
                 </div>
                 <div className="el-spec-box">
-                  <ShieldCheck size={16} className="spec-icon" />
+                  <ShieldCheck size={15} className="spec-icon" />
                   <div className="spec-text">
-                    <span className="spec-label">Architecture</span>
-                    <span className="spec-val">Secure Client-Side Ledger</span>
+                    <span className="spec-label">Security</span>
+                    <span className="spec-val">Encrypted Ledger</span>
                   </div>
                 </div>
               </div>
@@ -95,7 +201,7 @@ const Projects = () => {
               <div className="el-tech-section">
                 <span className="el-tech-label">Core Technologies:</span>
                 <div className="el-tech-pills">
-                  {['React', 'JavaScript (ES6+)', 'HTML5', 'CSS3 Modern Grid', 'Vite', 'Cloudflare'].map((tech) => (
+                  {['React.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3 Modern Grid', 'Vite', 'Cloudflare Edge'].map((tech) => (
                     <span key={tech} className="el-tech-pill">
                       <span className="tech-dot"></span>
                       {tech}
@@ -111,12 +217,13 @@ const Projects = () => {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn btn-primary el-demo-btn"
-                  id="eventledger-live-demo"
+                  id="eventledger-live-launch"
                 >
-                  <span>Explore Live Platform</span>
-                  <ArrowUpRight size={17} style={{ marginLeft: '4px' }} />
+                  <span>Launch EventLedger.me</span>
+                  <ArrowUpRight size={17} />
                 </a>
               </div>
+
             </div>
 
             {/* Right: Simulated App Browser Showcase Preview */}
@@ -201,7 +308,7 @@ const Projects = () => {
                       className="mockup-launch-btn"
                     >
                       <ExternalLink size={15} />
-                      <span>Launch EventLedger.me</span>
+                      <span>Explore Live Platform</span>
                     </a>
                   </div>
 
@@ -212,6 +319,45 @@ const Projects = () => {
 
           </div>
 
+        </div>
+
+        {/* Secondary Projects Grid */}
+        <div className="secondary-projects-header">
+          <h3 className="sec-proj-title">Additional Engineering Projects</h3>
+          <p className="sec-proj-sub">Algorithmic tools and interactive academic solutions</p>
+        </div>
+
+        <div className="secondary-projects-grid">
+          {filteredSecondary.map((proj) => (
+            <div key={proj.id} className="sec-proj-card glass-panel">
+              <div className="sec-card-top">
+                <span className="sec-tagline-badge">{proj.tagline}</span>
+                <span className="sec-metric-tag">{proj.metrics}</span>
+              </div>
+              
+              <h4 className="sec-card-title">{proj.title}</h4>
+              <p className="sec-card-desc">{proj.description}</p>
+
+              <div className="sec-tags-row">
+                {proj.tags.map(tag => (
+                  <span key={tag} className="sec-tag-pill">{tag}</span>
+                ))}
+              </div>
+
+              <div className="sec-card-footer">
+                <a 
+                  href={proj.github} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="sec-action-link"
+                >
+                  <Code2 size={15} />
+                  <span>View Repository</span>
+                  <ArrowUpRight size={14} />
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>
